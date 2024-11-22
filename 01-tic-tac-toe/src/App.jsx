@@ -51,7 +51,6 @@ function App() {
   const checkWinner = (boardToCheck) => {
     const playCount = plays + 1
     setPlays(playCount)
-    console.log(playCount)
     for (const combo of WINNER_COMBOS) {
       const [a,b,c] = combo
       if(boardToCheck[a] && boardToCheck[a] === boardToCheck[b] && boardToCheck[a] === boardToCheck[c]) return boardToCheck[a]
@@ -76,6 +75,7 @@ const [plays,setPlays] = useState(0)
     <>
     <main className='board'>
       <h1>TIC-TAC-TOE</h1>
+      <button onClick={resetGame}>Reset game!</button>
       <section className='game'>
         {board.map((_,index)=>{
           return ( 
