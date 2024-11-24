@@ -1,31 +1,9 @@
 import {useState} from 'react'
+import confetti from 'canvas-confetti'
+import Square from './Square'
+import { turns, WINNER_COMBOS } from './components'
 
 import './App.css'
-
-const turns = {
-  X:'X',
-  O: 'O',
-}
-
-const Square = ({children, updateBoard, index, isSelected}) => {
-
-  const handleClick = () => {
-    updateBoard(index)
-  }
-
-  const className = `square ${isSelected?'is-selected':''}`
-  return (
-    <div onClick={handleClick} className={className}>
-      {children}
-    </div>
-  )
-}
-
-const WINNER_COMBOS = [
-  [0,1,2],[3,4,5],[6,7,8],
-  [0,3,6],[1,4,7],[2,5,8],
-  [0,4,8],[2,4,6]
-]
 
 function App() {
 
@@ -39,8 +17,13 @@ function App() {
       const newTurn = turn === turns.X ? turns.O : turns.X
       setTurn(newTurn)
 
+      //almacenar en el local storage los datos de la partida
+      window.localStorage.setItem('board', JSON.stringify(newBoard))
+      window.localStorage.setItem('turn', JSON.stringify(newTurn))
+
       const newWinner = checkWinner(newBoard)
       if (newWinner || newWinner === false) {
+        if(newWinner !== false) confetti()
         setWinner(newWinner)
         //console.log(`${newWinner} wins. WINNER WINNER CHICKEN DINNER`)
         //como los setters en react son asincornos, no impiden la ejecucion del resto del codigo mientras se cambia el valor de la variable 
@@ -74,6 +57,7 @@ const [plays,setPlays] = useState(0)
   return (
     <>
     <main className='board'>
+
       <h1>TIC-TAC-TOE</h1>
       <button onClick={resetGame}>Reset game!</button>
       <section className='game'>
