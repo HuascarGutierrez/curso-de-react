@@ -31,7 +31,7 @@ const FollowMouse = () => {
       opacity: 0.8,
       pointerEvents: 'none',
       left: -20,
-      tip: -20,
+      top: -20,
       width: 40,
       height: 40,
       transform: `translate(${position.x}px,${position.y}px)`
