@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import './App.css'
 
 const CAT_ENDPOINT_RANDOM_FACT = 'https://catfact.ninja/fact'
 //const CAT_ENDPOINT_RANDOM_IMAGE = `https://cataas.com/cat/says/${firstWord}?size=50&color-red&json=true`
@@ -18,10 +19,10 @@ function App () {
   }, [])
 
   return (
-    <main>
-      <h1>App de gatitos</h1>
-      {fact && <p>{fact}</p>}
-      {imageUrl && <img src={imageUrl} alt='image extracted by the first word'/>}
+    <main className='card'>
+      <h1 className='title'>App de gatitos</h1>
+      {fact && <p className='phrase'>{fact}</p>}
+      {imageUrl && <img className='image' src={imageUrl} alt='image extracted by the first word'/>}
     </main> 
   )
 }
