@@ -3,12 +3,23 @@ import { getRandomFact } from './services/facts'
 
 import './App.css'
 
+function useCatImage ({fact}) {
+  const [imageUrl, setImageUrl] = useState()
+
+  useEffect(() => {
+    if(!fact) return
+    
+    const words = fact
+    const firstWord = words.split(' ')[0]
+    setImageUrl(`https://cataas.com/cat/says/${firstWord}?width=300&height=300&fontSize=32&fontColor=white`)
+  },[fact])
+  return {imageUrl}
+} 
+
 //const CAT_ENDPOINT_RANDOM_IMAGE = `https://cataas.com/cat/says/${firstWord}?size=50&color-red&json=true`
 function App () {
   const [fact, setFact] = useState()
-  const [imageUrl, setImageUrl] = useState()
-
-
+  const {imageUrl} = useCatImage({fact})
   
   useEffect( () => {
     async function setRandomFact() {
@@ -19,13 +30,7 @@ function App () {
   }
   , [])
 
-  useEffect(() => {
-    if(!fact) return
-    
-    const words = fact
-    const firstWord = words.split(' ')[0]
-    setImageUrl(`https://cataas.com/cat/says/${firstWord}?width=300&height=300&fontSize=32&fontColor=white`)
-  },[fact])
+  
 
   const handleClick = async() => {
     const newFact = await getRandomFact()
