@@ -1,10 +1,11 @@
 import './App.css'
+import { useRef } from 'react'
 import { useMovies } from './hooks/useMovies.js'
 import { Movies } from './components/Movies.jsx'
 
-
 function App() {
   const {movies: mappedMovies} = useMovies()
+
   
   return (
     <>
