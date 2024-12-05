@@ -3,6 +3,7 @@ import { useCatImage } from './hooks/useCatImage'
 import { useCatFact } from './hooks/useCatFact'
 
 import './App.css'
+import Otros from './components/Otros'
 
 //const CAT_ENDPOINT_RANDOM_IMAGE = `https://cataas.com/cat/says/${firstWord}?size=50&color-red&json=true`
 function App () {
@@ -23,6 +24,7 @@ function App () {
       <button onClick={handleClick}>Get new fact</button>
       {fact && <p className='phrase'>{fact}</p>}
       {imageUrl && <img className='image' src={imageUrl} alt='image extracted by the first word'/>}
+      <Otros/>
     </main> 
   )
 }
